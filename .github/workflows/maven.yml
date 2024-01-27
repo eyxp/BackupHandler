@@ -34,7 +34,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: BackupHandler
-        path: stagging
+        path: staging
 
   provide-download-link:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: BackupHandler
-        path: stagging
+        path: staging
 
     - name: Upload BackupHandler
       uses: actions/upload-artifact@v4
