@@ -8,9 +8,7 @@ on:
 
 jobs:
   build_test:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -22,7 +20,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-   
   publish-job:
     runs-on: ubuntu-latest
     needs: build_test
@@ -38,3 +35,25 @@ jobs:
       with:
         name: BackupHandler
         path: staging
+
+  provide-download-link:
+    runs-on: ubuntu-latest
+    needs: publish-job
+    steps:
+    - name: Download BackupHandler artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: BackupHandler
+        path: download
+
+    - name: Move artifact to accessible location
+      run: mv download/*.jar $GITHUB_WORKSPACE/BackupHandler.jar
+
+    - name: Upload BackupHandler
+      uses: actions/upload-artifact@v4
+      with:
+        name: BackupHandler
+        path: $GITHUB_WORKSPACE/BackupHandler.jar
+
+    - name: Provide download link
+      run: echo "Download Link: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/_apis/artifact?name=BackupHandler&path=BackupHandler.jar"
