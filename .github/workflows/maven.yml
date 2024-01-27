@@ -40,6 +40,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish-job
     steps:
+    - name: List Artifacts
+      run: ls -R $GITHUB_WORKSPACE/staging
+
     - name: Download BackupHandler artifact
       uses: actions/download-artifact@v4
       with:
