@@ -39,7 +39,6 @@ public class Backup extends JavaPlugin {
             if (backupConfig.generateConfig(backupObject).isFirstStart()) {
                 this.getLogger().log(Level.INFO, "First start recognized, please configure backup plugin in plugins//Backup//config.json");
                 return;
-
             }
 
             if (backupConfig.getConfig().backupTimes.length != 0) {
