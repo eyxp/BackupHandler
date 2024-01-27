@@ -56,4 +56,4 @@ jobs:
         path: $GITHUB_WORKSPACE/BackupHandler.jar
 
     - name: Provide download link
-      run: echo "Download Link: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/_apis/artifact?name=BackupHandler&path=BackupHandler.jar"
+      run: echo '$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/_apis/artifact?name=BackupHandler&path=BackupHandler.jar'
