@@ -1,0 +1,4 @@
+name: BackupManager
+version: 1.0
+author: Eyxp
+main: de.eyxp.backup.Backup
