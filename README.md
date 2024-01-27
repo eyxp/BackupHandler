@@ -1,6 +1,19 @@
+
 # BackupHandler
 
 BackupHandler is a Minecraft plugin that allows you to save your maps/temporary files and more without any problems.
+
+
+## FAQ
+
+#### Minecraft Version?
+
+- Version-independent
+
+#### Java Version?
+
+- Version-independent
+
 
 ## Installation
 
