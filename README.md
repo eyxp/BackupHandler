@@ -27,6 +27,7 @@ BackupHandler is a Minecraft plugin that allows you to save your maps/temporary 
 
 
 - [Download plugin](https://github.com/eyxp/BackupHandler/actions/runs/7678316701/artifacts/1199576990)
+- Unzip .jar file BackupHandler-{Version}-SNAPSHOT.jar
 - Add to your Minecraft Spigot Server
 - Add your configuration in plugins//Backup//config.json
 - [In case of errors, create a Github issue](https://github.com/eyxp/BackupHandler/issues)
