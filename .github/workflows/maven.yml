@@ -35,7 +35,6 @@ jobs:
       with:
         name: BackupHandler
         path: staging
-
   provide-download-link:
     runs-on: ubuntu-latest
     needs: publish-job
@@ -57,3 +56,9 @@ jobs:
 
     - name: Provide download link
       run: echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/_apis/artifact?name=BackupHandler&path=staging"
+  debug-artifacts:
+    runs-on: ubuntu-latest
+    needs: publish-job
+    steps:
+    - name: List Artifacts
+      run: ls -R $GITHUB_WORKSPACE
