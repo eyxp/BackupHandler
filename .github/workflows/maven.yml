@@ -31,27 +31,9 @@ jobs:
         distribution: 'temurin'
     - run: mvn --batch-mode --update-snapshots verify
     - name: Create staging directory and copy JAR files
-      run: mkdir staging && cp target/*.jar staging
-    - uses: actions/upload-artifact@v4
+      run: mkdir -p staging && cp target/*.jar staging
+    - name: Upload JAR file
+      uses: actions/upload-artifact@v4
       with:
         name: BackupHandler
-        path: staging
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./staging/*.jar
-        asset_name: BackupHandler.jar
-        asset_content_type: application/java-archive
+        path: staging/*.jar
