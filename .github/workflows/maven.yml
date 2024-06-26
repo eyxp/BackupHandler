@@ -19,6 +19,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Verify JAR file exists
+      run: ls -la target
 
   publish-job:
     runs-on: ubuntu-latest
@@ -31,7 +33,7 @@ jobs:
         distribution: 'temurin'
     - run: mvn --batch-mode --update-snapshots verify
     - name: Create staging directory and copy JAR files
-      run: mkdir -p staging && cp target/*.jar staging
+      run: mkdir -p staging && cp target/*.jar staging && ls -la staging
     - name: Upload JAR file
       uses: actions/upload-artifact@v4
       with:
@@ -48,6 +50,8 @@ jobs:
       with:
         name: BackupHandler
         path: staging
+    - name: Verify downloaded JAR file
+      run: ls -la staging
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
